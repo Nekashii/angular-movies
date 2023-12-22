@@ -1,1 +1,7 @@
-<app-movie-table [movies]="movies" (pageChange)="onPageChange($event)" (filterChange)="onFilterChange($event)"></app-movie-table>
+<app-movie-table
+  [movies]="movies"
+  (pageChange)="onPageChange($event)"
+  (filterChange)="onFilterChange($event)"
+  [currentPage]="currentPage"
+  [totalPages]="totalPages"
+></app-movie-table>

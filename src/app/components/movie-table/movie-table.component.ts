@@ -11,6 +11,10 @@ import { DatePipe } from '@angular/common'
 export class MovieTableComponent {
   @Input({required: true})
   movies!: Movie[]
+  @Input({required: true})
+  currentPage!: number
+  @Input({required: true})
+  totalPages!: number
   @Output()
   pageChange = new EventEmitter<number>()
   @Output()

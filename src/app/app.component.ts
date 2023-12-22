@@ -15,7 +15,7 @@ import { MovieTableComponent } from './components/movie-table/movie-table.compon
 export class AppComponent implements OnInit, OnDestroy {
   _subscription!: Subscription
   movies: Movie[] = []
-  currPage: number = 1
+  currentPage: number = 1
   totalPages: number = 1
 
   constructor(private readonly _movieService: MovieService) {}
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._subscription = this._movieService.getByPage().subscribe({
       next: ({ results, page, total_pages }) => {
         this.movies = results
-        this.currPage = page
+        this.currentPage = page
         this.totalPages = total_pages
       },
     })
