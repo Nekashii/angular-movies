@@ -1,28 +1,42 @@
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Título</th>
-        <th>Fecha de lanzamiento</th>
-        <th>Popularidad</th>
-        <th>Voto promedio</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (movie of movies; track movie.id) {
+<div class="vstack gap-3">
+  <div>
+    <input (input)="setFilter(filter)" [(ngModel)]="filter" type="text" class="form-control" placeholder="Filtrar por título">
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped text-center">
+      <thead>
         <tr>
-          <th>{{$index + 1}}</th>
-          <td>{{movie.title}}</td>
-          <td>{{movie.release_date | date : 'longDate'}}</td>
-          <td>{{movie.popularity}}</td>
-          <td>{{movie.vote_average}}</td>
+          <th>#</th>
+          <th class="text-start">Título</th>
+          <th>Fecha de lanzamiento</th>
+          <th>Popularidad</th>
+          <th>Voto promedio</th>
         </tr>
-      } @empty {
-        <tr>
-          <td colspan="5">No hay películas para mostrar.</td>
-        </tr>
-      }
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        @for (movie of movies; track movie.id) {
+          <tr>
+            <th>{{$index + 1}}</th>
+            <td class="text-start">{{movie.title}}</td>
+            <td>{{movie.release_date | date : 'longDate'}}</td>
+            <td>{{movie.popularity}}</td>
+            <td>{{movie.vote_average}}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5">{{filter ? 'No se encontraron películas que cumplan el criterio de búsqueda en esta página' : 'No hay películas para mostrar.'}}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" (click)="setPage(1)" [ngClass]="{'disabled': currentPage === 1}"><button class="page-link"><i class="bi bi-chevron-double-left"></i></button></li>
+        @for (page of pagesToShow; track $index) {
+          <li class="page-item" (click)="setPage(page)" [ngClass]="{'active': page === currentPage}"><button class="page-link">{{page}}</button></li>  
+        }
+        <li class="page-item" (click)="setPage(totalPages)" [ngClass]="{'disabled': currentPage === totalPages}"><button class="page-link"><i class="bi bi-chevron-double-right"></i></button></li>
+      </ul>
+    </nav>
+  </div>
 </div>

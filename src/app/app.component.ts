@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
       next: ({ results, page, total_pages }) => {
         this.movies = results
         this.currentPage = page
-        this.totalPages = total_pages
+        this.totalPages = total_pages < 500 ? total_pages : 500
       },
     })
   }
