@@ -1,0 +1,28 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Título</th>
+        <th>Fecha de lanzamiento</th>
+        <th>Popularidad</th>
+        <th>Voto promedio</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (movie of movies; track movie.id) {
+        <tr>
+          <th>{{$index + 1}}</th>
+          <td>{{movie.title}}</td>
+          <td>{{movie.release_date | date : 'longDate'}}</td>
+          <td>{{movie.popularity}}</td>
+          <td>{{movie.vote_average}}</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="5">No hay películas para mostrar.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
