@@ -1,7 +1,15 @@
-<app-movie-table
-  [movies]="movies"
-  (pageChange)="onPageChange($event)"
-  (filterChange)="onFilterChange($event)"
-  [currentPage]="currentPage"
-  [totalPages]="totalPages"
-></app-movie-table>
+<div class="container my-5">
+  <h1 class="text-center">Angular movies</h1>
+  <h5 class="text-center mb-4">Prueba técnica con Angular</h5>
+  <div class="card shadow">
+    <div class="card-body">
+      <app-movie-table
+      [movies]="movies"
+      (pageChange)="onPageChange($event)"
+      (filterChange)="onFilterChange($event)"
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+    ></app-movie-table>
+    </div>
+  </div>
+</div>
